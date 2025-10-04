@@ -1,0 +1,99 @@
+.star-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #03030f 0%, #000 100%);
+}
+
+/* 🌟 Nền sao canvas */
+.star-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* 💞 Chữ trung tâm */
+.center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(0%, -50%);
+  text-align: center;
+  z-index: 5;
+
+  h1 {
+    font-size: 2.5rem;
+    color: #ff99dd;
+    text-shadow: 0 0 25px #ff99dd, 0 0 50px #ff66cc;
+    animation: glow 2s ease-in-out infinite alternate, heartbeat 3s infinite;
+  }
+}
+
+/* 🌸 Các vật thể bay quanh (trái tim, hành tinh, v.v.) */
+.floating {
+  position: absolute;
+  width: 80px;
+  opacity: 0.9;
+  z-index: 3;
+  animation: float 10s ease-in-out infinite;
+  pointer-events: none;
+
+  &.floating1 {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  &.floating2 {
+    top: 30%;
+    right: 15%;
+    animation-delay: 2s;
+  }
+
+  &.floating3 {
+    bottom: 20%;
+    left: 10%;
+    animation-delay: 4s;
+  }
+
+  &.floating4 {
+    bottom: 10%;
+    right: 25%;
+    animation-delay: 1s;
+  }
+}
+
+/* 💫 Animation bay */
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+  50% { transform: translateY(-30px) rotate(10deg); opacity: 1; }
+  100% { transform: translateY(0) rotate(-10deg); opacity: 0.8; }
+}
+
+/* 💖 Hiệu ứng chữ sáng và tim đập */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66cc, 0 0 40px #ff3399;
+  }
+  to {
+    text-shadow: 0 0 20px #ffb3e6, 0 0 50px #ff66cc, 0 0 80px #ff3399;
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1) translate(-50%, -50%); }
+  50% { transform: scale(1.08) translate(-50%, -50%); }
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .center-text h1 {
+    font-size: 1.6rem;
+  }
+
+  .floating {
+    width: 60px;
+  }
+}

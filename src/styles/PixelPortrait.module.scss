@@ -1,0 +1,112 @@
+@keyframes beat {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.4));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 12px rgba(255, 105, 180, 0.9));
+  }
+}
+
+.container2 {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  margin: 2rem auto;
+  background-color: #6a0dad;
+  border-radius: 20px;
+  box-shadow: 0 0 15px 4px rgba(106, 13, 173, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .heartFrame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100; /* đảm bảo nó trên */
+    pointer-events: none;
+    opacity: 0;
+    transform-origin: center;
+    transition: opacity 0.5s ease;
+
+    path {
+      stroke: #ff1493;
+      stroke-width: 4;
+      fill: none;
+    }
+
+    &.finished {
+      opacity: 1;
+      animation: beat 1.5s infinite ease-in-out;
+    }
+  }
+
+  .wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 1s ease;
+
+    &.finished {
+      box-shadow: 0 0 30px 10px rgba(255, 20, 147, 0.8);
+    }
+  }
+
+  .canvas {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    border: 1px solid black;
+    z-index: 1;
+  }
+
+  .originalImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 1s ease, transform 1s ease, box-shadow 1s ease;
+
+    &.finished {
+      opacity: 1;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px 10px rgba(131, 82, 253, 0.8);
+    }
+  }
+
+  .audioToggle {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 0.3rem 0.7rem;
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 200;
+    font-weight: bold;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &.on {
+      background-color: #ff1493;
+      color: #fff;
+    }
+  }
+}

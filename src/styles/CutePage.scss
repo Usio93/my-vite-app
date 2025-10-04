@@ -1,0 +1,214 @@
+.cute-container {
+  background-color: #fff;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Comic Sans MS", "Poppins", sans-serif;
+  color: #ff8fcf;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 💕 Tim bay nền */
+.heart-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  bottom: -10%;
+  width: 20px;
+  height: 20px;
+  background-color: #ff80b3;
+  transform: rotate(45deg);
+  animation: floatUp 8s linear infinite;
+  opacity: 0.7;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff80b3;
+    border-radius: 50%;
+  }
+
+  &::before {
+    top: -10px;
+    left: 0;
+  }
+
+  &::after {
+    top: 0;
+    left: -10px;
+  }
+
+  @for $i from 1 through 15 {
+    &:nth-child(#{$i}) {
+      left: random(100) * 1%;
+      animation-delay: random(10) * 0.3s;
+      animation-duration: 6s + random(4);
+      transform: scale(0.6 + random(4) * 0.1);
+    }
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(45deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* 🐻🐼 Bé gấu */
+.panda,
+.bear {
+  position: absolute;
+  width: 160px;
+  animation: bounce 2s ease-in-out infinite;
+  user-select: none;
+  z-index: 1;
+}
+
+.panda {
+  bottom: 0;
+  left: 8%;
+}
+
+.bear {
+  bottom: 0;
+  right: 8%;
+}
+
+/* 🎵 Nút bật nhạc */
+.music-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 2;
+
+  &.on {
+    transform: scale(1.2);
+  }
+}
+
+/* 💬 Chữ chạy */
+.text-box {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  min-height: 100px;
+  line-height: 2.2rem;
+  margin-top: 100px;
+  animation: fadeIn 0.5s ease;
+  padding: 0 10px;
+  z-index: 2;
+}
+
+/* 💞 Nút Yes / No */
+.button-container {
+  margin-top: 40px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.final-text {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ff6fb0;
+  animation: fadeIn 1s ease;
+}
+
+button {
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 25px;
+  margin: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.yes-btn {
+  background-color: #ff85b3;
+  color: white;
+  box-shadow: 0 4px 10px rgba(255, 133, 179, 0.5);
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: #ff5fa3;
+  }
+}
+
+.no-btn {
+  background-color: #ccc;
+  color: #555;
+  position: absolute;
+  transition: top 0.2s ease, left 0.2s ease;
+}
+
+/* 💕 Animation nhún nhảy */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* 🌸 Animation fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .text-box {
+    font-size: 1.2rem;
+    margin-top: 60px;
+  }
+
+  .final-text {
+    font-size: 1.2rem;
+  }
+
+  .panda,
+  .bear {
+    width: 100px;
+    bottom: -10px;
+  }
+
+  .yes-btn,
+  .no-btn {
+    font-size: 1rem;
+    padding: 8px 20px;
+  }
+}

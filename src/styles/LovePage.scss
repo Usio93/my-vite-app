@@ -1,0 +1,185 @@
+.love-container {
+  background-color: #fff;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Comic Sans MS", "Poppins", sans-serif;
+  color: #ff8fcf;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🌸 Ảnh nền */
+.background-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.25; /* làm mờ nhẹ */
+  filter: blur(2px);
+  z-index: 0;
+}
+
+/* 💕 Tim bay nền */
+.heart-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.heart {
+  position: absolute;
+  bottom: -10%;
+  width: 20px;
+  height: 20px;
+  background-color: #ff80b3;
+  transform: rotate(45deg);
+  animation: floatUp 8s linear infinite;
+  opacity: 0.7;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff80b3;
+    border-radius: 50%;
+  }
+
+  &::before { top: -10px; left: 0; }
+  &::after { top: 0; left: -10px; }
+
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      left: random(100) * 1%;
+      animation-delay: random(10) * 0.3s;
+      animation-duration: 6s + random(4);
+      transform: scale(0.6 + random(4) * 0.1);
+    }
+  }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+  100% { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
+}
+
+/* 🎵 Nút bật nhạc */
+.music-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 3;
+
+  &.on { transform: scale(1.2); }
+}
+
+/* 💓 Ảnh trung tâm */
+.photo-frame {
+  border-radius: 50%;
+  padding: 14px;
+  background: linear-gradient(135deg, #ffb3d9, #ffe0f3);
+  box-shadow: 0 0 25px rgba(255, 150, 200, 0.6);
+  animation: glow 3s infinite alternate, pulse 3.5s ease-in-out infinite;
+  z-index: 3;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+}
+
+.photo-frame:hover {
+  transform: scale(1.1);
+}
+
+.center-photo {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  box-shadow: 0 0 30px rgba(255, 100, 180, 0.4);
+  animation: fadeIn 2s ease, slowSpin 60s linear infinite;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 15px rgba(255, 180, 220, 0.4); }
+  to { box-shadow: 0 0 45px rgba(255, 150, 200, 0.8); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes slowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 🎁 Ảnh trang trí */
+.deco {
+  position: absolute;
+  width: 120px;
+  opacity: 0.9;
+  animation: bounce 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+.deco1 { top: 5%; left: 5%; }
+.deco2 { top: 10%; right: 8%; }
+.deco3 { bottom: 10%; left: 8%; }
+.deco4 { bottom: 12%; right: 10%; }
+.deco5 { top: 30%; left: 15%; transform: rotate(-10deg); }
+.deco6 { top: 25%; right: 15%; transform: rotate(15deg); }
+
+/* 💌 Lời chúc */
+.love-text {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.8rem;
+  color: #ff6fa7;
+  animation: fadeIn 2s ease;
+  z-index: 3;
+  line-height: 2.6rem;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .center-photo {
+    width: 260px;
+    height: 260px;
+  }
+
+  .deco {
+    width: 80px;
+  }
+
+  .love-text {
+    font-size: 1.2rem;
+    padding: 0 20px;
+  }
+
+  .photo-frame {
+    padding: 8px;
+  }
+}
